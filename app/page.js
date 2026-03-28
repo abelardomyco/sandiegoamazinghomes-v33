@@ -71,7 +71,7 @@ function getHomeGalleryImages() {
 }
 
 const ROSAMELIA_BIO =
-  "Rosamelia knows San Diego! She has been here for over 40 years and understands the niche markets throughout the county of San Diego—whether it is La Jolla, Del Mar, Coronado, Rancho Santa Fe, Downtown or Mission Valley or South Bay—she has the experience to understand your needs to both deliver something you love or get your house sold.";
+  "Rosamelia knows San Diego! She has been here for over 40 years and understands the niche markets throughout the county of San Diego—whether it is La Jolla, Del Mar, Coronado, Rancho Santa Fe, Downtown, Mission Valley or South Bay—she has the experience to understand your needs to both deliver something you love or get your house sold.";
 
 /** Compact homepage blog links (under Contact / Rosamelia bio). */
 const HOME_BLOG_SPOTLIGHT = [

@@ -4,6 +4,19 @@
 
 Brief log for new agents. See dated docs in `docs/` for details.
 
+## 2026-03-27 (Homepage bio punctuation)
+
+- **Rosamelia bio** on **`/`**: **`Downtown or Mission Valley or South Bay`** → **`Downtown, Mission Valley or South Bay`**. **File:** `app/page.js`.
+
+## 2026-03-28 (Git: push to sandiegoamazinghomes-v2)
+
+- **`git fetch origin`** then **`git push -u origin main --force-with-lease`** → **succeeded**. Remote **`main`** updated from **`a3cb5bc`** to **`15d152c`** (forced update). **Note:** First bare **`--force-with-lease`** failed with **“stale info”** until **`git fetch`** populated **`origin/main`**.
+- Earlier: **`git branch -M main`**, **`git add .`**, **`git commit -m "pre-launch current SDAH site"`** → **`15d152c`** (**476 files**). Plain **`git push -u origin main`** had been rejected (non-fast-forward) before force-with-lease.
+
+## 2026-03-28 (Git: pre-launch commit + push attempt)
+
+- **Superseded** by push entry above. Initial **`git push -u origin main`** was **rejected** (remote had other commits); resolved with fetch + **`--force-with-lease`**.
+
 ## 2026-03-28 (Git: origin → sandiegoamazinghomes-v2)
 
 - **`git remote remove origin`** then **`git remote add origin https://github.com/abelardomyco/sandiegoamazinghomes-v2.git`**. Replaces previous **`sandiegoamazinghomes.git`** remote. **Push / upstream:** create the GitHub repo if needed, then e.g. **`git push -u origin main`** (branch was **`main`** in this clone).
