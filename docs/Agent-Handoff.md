@@ -4,6 +4,11 @@
 
 Brief log for new agents. See dated docs in `docs/` for details.
 
+## 2026-03-28 (Git: origin → sandiegoamazinghomes-v33)
+
+- **`git remote remove origin`**, **`git remote add origin https://github.com/abelardomyco/sandiegoamazinghomes-v33.git`**, **`git branch -M main`**, **`git add .`**, **`git commit -m "Current live-ready SDAH build"`** → **`18c2431`** (**2 files:** `app/page.js`, `docs/Agent-Handoff.md`).
+- **`git push -u origin main`** → **succeeded** (new **`main`** on remote). Previous remote was **`sandiegoamazinghomes-v2.git`**.
+
 ## 2026-03-27 (Homepage bio punctuation)
 
 - **Rosamelia bio** on **`/`**: **`Downtown or Mission Valley or South Bay`** → **`Downtown, Mission Valley or South Bay`**. **File:** `app/page.js`.
