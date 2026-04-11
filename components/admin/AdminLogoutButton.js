@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 
-export default function AdminLogoutButton() {
+export default function AdminLogoutButton({ className }) {
   const router = useRouter();
 
   async function logout() {
@@ -15,12 +15,9 @@ export default function AdminLogoutButton() {
     router.refresh();
   }
 
+  const base = "text-sm font-medium text-slate-600 hover:text-slate-900 underline";
   return (
-    <button
-      type="button"
-      onClick={logout}
-      className="text-sm font-medium text-slate-600 hover:text-slate-900 underline"
-    >
+    <button type="button" onClick={logout} className={className ? `${base} ${className}` : base}>
       Sign out
     </button>
   );

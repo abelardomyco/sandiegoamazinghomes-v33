@@ -1,8 +1,28 @@
 # Agent Handoff — San Diego Amazing Homes
 
-**Last updated:** 2026-03-28
+**Last updated:** 2026-04-10
 
 Brief log for new agents. See dated docs in `docs/` for details.
+
+## 2026-04-10 (Dev servers stopped)
+
+- Terminated **Node** listeners on **:3000** and **:3001** (TBLC + SDAH dev). Restart with `npm run dev` in each project when needed.
+
+## 2026-04-10 (Admin `.env.local`: `ADMIN_SESSION_SECRET`)
+
+- Generated **48-byte hex** `ADMIN_SESSION_SECRET` and saved with admin username/password in **`.env.local`** (gitignored). Regenerate anytime: `node -e "console.log(require('crypto').randomBytes(48).toString('hex'))"`. Doc: **`docs/Admin-Session-Secret-Generated-2026-04-10.md`**.
+
+## 2026-04-10 (Gallery featured #1: Open house April 2)
+
+- Homepage gallery **first featured** slot: prefers **`Open house April 2`** (png/jpg, common case variants) in `sdah photos to use/gallery/`, then falls back to **`Open house.png`**. Doc: **`docs/Gallery-Featured-Open-House-April-2-2026-04-10.md`**.
+
+## 2026-04-10 (Admin: WordPress-style shell + username)
+
+- **`/admin`:** Login page WordPress-style card; optional **`ADMIN_USERNAME`** in `.env.local` with existing **`ADMIN_DASHBOARD_PASSWORD`** + **`ADMIN_SESSION_SECRET`**. Dashboard uses **`AdminShell`** sidebar (dark rail, View site, Sign out). Doc: **`docs/Admin-WordPress-Style-And-Username-2026-04-10.md`**.
+
+## 2026-04-10 (Dev server)
+
+- **`npm run dev`** from **`sandiegoamazinghomes`**: port **3001** was **EADDRINUSE** (prior **`node.exe`**); process terminated, dev server restarted. Site: **http://localhost:3001** (3000 reserved for Baja Land Company per `scripts/dev-3001.js`).
 
 ## 2026-03-28 (Git: origin → sandiegoamazinghomes-v33)
 

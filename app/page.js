@@ -20,7 +20,20 @@ const PARTNER_SITE = {
  * **Featured order (LTR)** first, then every other image file in the folder (alphabetical).
  */
 const HOME_GALLERY_FEATURED_SLOTS = [
-  { candidates: ["Open house.png"], alt: "Open house" },
+  {
+    candidates: [
+      "Open house April 2.png",
+      "Open house April 2.jpg",
+      "open house april 2.png",
+      "open house april 2.jpg",
+      "Open house april 2.png",
+      "Open house april 2.jpg",
+      "Open house.png",
+    ],
+    alt: "Open house — April 2",
+    /** When the only match is the legacy filename, keep the previous caption. */
+    altIfFallback: "Open house",
+  },
   { candidates: ["sold 1.png"], alt: "Recently sold San Diego home" },
   { candidates: ["sold coronado.png", "sold coronado.jpg"], alt: "Sold in Coronado" },
   { candidates: ["sold 4.jpg", "sold 4.png"], alt: "Recently sold San Diego home" },
@@ -51,7 +64,9 @@ function getHomeGalleryImages() {
     const name = slot.candidates.find((n) => existsSync(join(galleryDir, n)));
     if (name) {
       used.add(name);
-      featured.push({ path: `${urlBase}/${encodeURIComponent(name)}`, caption: slot.alt });
+      const caption =
+        slot.altIfFallback && name === "Open house.png" ? slot.altIfFallback : slot.alt;
+      featured.push({ path: `${urlBase}/${encodeURIComponent(name)}`, caption });
     }
   }
 

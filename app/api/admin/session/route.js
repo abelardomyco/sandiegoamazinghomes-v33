@@ -13,20 +13,25 @@ export async function POST(request) {
     }
 
     const password = typeof body?.password === "string" ? body.password : "";
-    const expected = process.env.ADMIN_DASHBOARD_PASSWORD || "";
+    const username = typeof body?.username === "string" ? body.username.trim() : "";
+    const expectedPassword = process.env.ADMIN_DASHBOARD_PASSWORD || "";
+    const expectedUsername = (process.env.ADMIN_USERNAME || "").trim();
     const secret = process.env.ADMIN_SESSION_SECRET || "";
 
-    if (!expected || !secret) {
+    if (!expectedPassword || !secret) {
       return NextResponse.json(
         {
           error:
-            "Admin is not configured. Set ADMIN_DASHBOARD_PASSWORD and ADMIN_SESSION_SECRET in .env.local.",
+            "Admin is not configured. Set ADMIN_DASHBOARD_PASSWORD and ADMIN_SESSION_SECRET in .env.local. Optionally set ADMIN_USERNAME.",
         },
         { status: 503 }
       );
     }
-    if (password !== expected) {
-      return NextResponse.json({ error: "Invalid password." }, { status: 401 });
+
+    const userOk = !expectedUsername || username === expectedUsername;
+    const passOk = password === expectedPassword;
+    if (!userOk || !passOk) {
+      return NextResponse.json({ error: "Invalid username or password." }, { status: 401 });
     }
 
     const token = await createSignedAdminCookie(secret);

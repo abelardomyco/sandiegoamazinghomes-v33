@@ -1,5 +1,4 @@
 import Link from "next/link";
-import AdminLogoutButton from "@/components/admin/AdminLogoutButton";
 
 export const metadata = {
   title: "Dashboard",
@@ -11,13 +10,10 @@ export default async function AdminDashboardPage() {
   const d = await loadAdminDashboardSnapshot();
 
   return (
-    <div className="space-y-8">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <h1 className="text-xl font-bold text-slate-900">Site dashboard</h1>
-          <p className="text-sm text-slate-600 mt-0.5">Internal — not for public indexing.</p>
-        </div>
-        <AdminLogoutButton />
+    <div className="space-y-8 max-w-6xl">
+      <div>
+        <h1 className="text-2xl font-bold text-slate-900">Dashboard</h1>
+        <p className="text-sm text-slate-600 mt-1">Overview of contacts, content inventory, and launch notes.</p>
       </div>
 
       <section className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
