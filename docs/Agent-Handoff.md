@@ -4,9 +4,21 @@
 
 Brief log for new agents. See dated docs in `docs/` for details.
 
+## 2026-08-04 (Dev server start)
+
+- Freshly started SDAH on **http://localhost:3001** (`npm run dev`); was not already running. HTTP 200 verified. Other ports left alone. Doc: **`docs/Dev-Server-Start-3001-2026-08-04.md`**.
+
+## 2026-08-04 (Gallery: numbered images only)
+
+- Homepage gallery shows **only** numbered `1`–`5` in order from `sdah photos to use/gallery/` (`1 - saltaire sold.png` … `5 - sold 5.png`). Doc: **`docs/Gallery-Numbered-Images-Only-2026-08-04.md`**.
+
 ## 2026-08-04 (Gallery featured #1: Saltaire sold)
 
 - Homepage gallery **first featured** slot: prefers **`saltaire sold.png`** (case variants) in `sdah photos to use/gallery/` instead of Open house April 2. Caption/alt: **Saltaire sold**. Doc: **`docs/Gallery-Featured-Saltaire-Sold-2026-08-04.md`**.
+
+## 2026-08-04 (Dev server stopped)
+
+- Stopped SDAH Next.js on **:3001** only (PID **19152**); port confirmed free. Doc: **`docs/Dev-Server-Stop-3001-2026-08-04.md`**.
 
 ## 2026-08-04 (Dev server)
 

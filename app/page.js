@@ -1,4 +1,4 @@
-import { readFileSync, existsSync, readdirSync } from "fs";
+import { readFileSync, existsSync } from "fs";
 import { join } from "path";
 import Link from "next/link";
 import Image from "next/image";
@@ -16,68 +16,47 @@ const PARTNER_SITE = {
 };
 
 /**
- * Homepage gallery: `public/images/sdah photos to use/gallery/`.
- * **Featured order (LTR)** first, then every other image file in the folder (alphabetical).
+ * Homepage gallery: numbered images only in
+ * `public/images/sdah photos to use/gallery/` (`1 - …` through `5 - …`), in order.
  */
-const HOME_GALLERY_FEATURED_SLOTS = [
+const HOME_GALLERY_SLOTS = [
   {
-    candidates: [
-      "saltaire sold.png",
-      "saltaire sold.jpg",
-      "Saltaire sold.png",
-      "Saltaire sold.jpg",
-      "Saltaire Sold.png",
-      "Saltaire Sold.jpg",
-    ],
+    candidates: ["1 - saltaire sold.png", "1 - saltaire sold.jpg"],
     alt: "Saltaire sold",
   },
-  { candidates: ["sold 1.png"], alt: "Recently sold San Diego home" },
-  { candidates: ["sold coronado.png", "sold coronado.jpg"], alt: "Sold in Coronado" },
-  { candidates: ["sold 4.jpg", "sold 4.png"], alt: "Recently sold San Diego home" },
-  { candidates: ["sold 3.jpg", "sold 3.png", "sold 3.2.png"], alt: "Recently sold San Diego home" },
+  {
+    candidates: ["2 - sold 1.png", "2 - sold 1.jpg"],
+    alt: "Recently sold San Diego home",
+  },
+  {
+    candidates: ["3 - sold 3.2.png", "3 - sold 3.2.jpg", "3 - sold 3.png", "3 - sold 3.jpg"],
+    alt: "Recently sold San Diego home",
+  },
+  {
+    candidates: ["4 - sold coronado.png", "4 - sold coronado.jpg"],
+    alt: "Sold in Coronado",
+  },
+  {
+    candidates: ["5 - sold 5.png", "5 - sold 5.jpg"],
+    alt: "Recently sold San Diego home",
+  },
 ];
 
-function isGalleryImageFilename(name) {
-  return /\.(jpg|jpeg|png|gif|webp)$/i.test(name) && !name.startsWith("._");
-}
-
-/** Human-ish caption for non-featured files (filename without extension). */
-function galleryFilenameCaption(name) {
-  return name.replace(/\.[^.]+$/i, "").replace(/_/g, " ");
-}
-
-/**
- * All gallery images: featured slots first (if present on disk), then remaining files A–Z.
- */
+/** Homepage gallery: slots 1–5 when those files exist on disk. */
 function getHomeGalleryImages() {
   const { SDAH_PHOTOS_DIR, SDAH_PHOTOS_BASE } = getSdahPhotosFolderConstants();
   const galleryDir = join(SDAH_PHOTOS_DIR, "gallery");
   const urlBase = `${SDAH_PHOTOS_BASE}/gallery`;
   if (!existsSync(galleryDir)) return [];
 
-  const used = new Set();
-  const featured = [];
-  for (const slot of HOME_GALLERY_FEATURED_SLOTS) {
+  const images = [];
+  for (const slot of HOME_GALLERY_SLOTS) {
     const name = slot.candidates.find((n) => existsSync(join(galleryDir, n)));
     if (name) {
-      used.add(name);
-      featured.push({ path: `${urlBase}/${encodeURIComponent(name)}`, caption: slot.alt });
+      images.push({ path: `${urlBase}/${encodeURIComponent(name)}`, caption: slot.alt });
     }
   }
-
-  let restNames = [];
-  try {
-    restNames = readdirSync(galleryDir).filter((n) => isGalleryImageFilename(n) && !used.has(n));
-  } catch {
-    return featured;
-  }
-  restNames.sort((a, b) => a.localeCompare(b, undefined, { sensitivity: "base" }));
-  const rest = restNames.map((name) => ({
-    path: `${urlBase}/${encodeURIComponent(name)}`,
-    caption: galleryFilenameCaption(name),
-  }));
-
-  return [...featured, ...rest];
+  return images;
 }
 
 const ROSAMELIA_BIO =
