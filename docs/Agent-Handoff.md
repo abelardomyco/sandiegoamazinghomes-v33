@@ -1,8 +1,36 @@
 # Agent Handoff — San Diego Amazing Homes
 
-**Last updated:** 2026-04-10
+**Last updated:** 2026-08-04
 
 Brief log for new agents. See dated docs in `docs/` for details.
+
+## 2026-08-04 (Gallery featured #1: Saltaire sold)
+
+- Homepage gallery **first featured** slot: prefers **`saltaire sold.png`** (case variants) in `sdah photos to use/gallery/` instead of Open house April 2. Caption/alt: **Saltaire sold**. Doc: **`docs/Gallery-Featured-Saltaire-Sold-2026-08-04.md`**.
+
+## 2026-08-04 (Dev server)
+
+- **`npm run dev`** from `sandiegoamazinghomes/` → **http://localhost:3001** (fresh start; was not already running). HTTP 200 verified. Doc: **`docs/Dev-Server-Restart-3001-2026-08-04.md`**.
+
+## 2026-04-24 (Admin dashboard layout)
+
+- **`app/admin/dashboard/page.js`**: Root wrapper **`mx-auto w-full`** so the dashboard centers in the admin content column.
+- **`components/admin/AdminShell.js`**: Main pane **`w-full overflow-x-auto`** so wide grids scroll instead of clipping.
+- Monorepo note: **`docs/Dashboard-Display-Fix-2026-04-24.md`**.
+
+## 2026-04-15 (`/market` data stewardship)
+
+- **Ongoing accuracy:** Documented how to keep **`/market`** and **`/market/heat-map`** current without mock data—**rates every 2–3 days**, **full market / heat / areas weekly**; source list; Task prompts; field mapping. **`data/README-market-data.md`**. Rule: **`.cursor/rules/sdah-market-data-steward.mdc`** (request when refreshing market JSON). Doc: **`docs/Market-Page-Data-Stewardship-2026-04-15.md`**.
+
+## 2026-04-14 (Dev server)
+
+- **`npm run dev`** from repo root → **`scripts/dev-3001.js`** → **http://localhost:3001** (port **3000** reserved for The Baja Land Company).
+
+## 2026-04-12 (Admin env runtime audit + Vercel-safe reads)
+
+- **Issue:** Production “Admin is not configured…” comes from **`POST /api/admin/session`** when password or session secret reads **falsy** — often **build-time `process.env` inlining** if host exposes secrets only at **runtime** (not during `next build`).
+- **Code:** **`lib/admin-env.js`** (bracket-key reads); **`app/api/admin/session/route.js`** + **`dynamic = "force-dynamic"`**; **`middleware.js`** uses same helper for secret. **Temporary** **`GET /api/admin/env-diagnostics`** — **404** unless **`ENABLE_ADMIN_ENV_DIAG=1`** or **`true`**; JSON booleans only.
+- **Doc:** `docs/Admin-Env-Runtime-Audit-2026-04-12.md`.
 
 ## 2026-04-10 (Dev servers stopped)
 
